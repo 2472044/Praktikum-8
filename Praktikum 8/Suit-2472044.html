@@ -1,35 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Suit</title>
+  <meta charset="UTF-8">
+  <title>Permainan Angka</title>
+  <style>
+    body {
+      background-color: #c8a97e;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    h2 {
+      margin-top: 20px;
+    }
+    .result {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+    .player, .computer {
+      margin: 0 30px;
+    }
+    .label {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .red { color: red; }
+    .blue { color: blue; }
+    .vs {
+      font-size: 20px;
+      margin: 0 20px;
+    }
+    .status {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: red;
+    }
+    img {
+      width: 120px;
+    }
+  </style>
 </head>
 <body>
-    <div id="what"></div>
-    <img src="" id="gambar1" width="100px" height="100px">
-    <button onclick="ganti()">Ganti</button>
-    <script>
-        let color = prompt("Selamat Bermain!!!!! Silahkan Masukkan Angka Pilihan Anda: (Angka 1-9)");
-        document.writeln("ur fav color is + color");
-        let kotak = document.getElementById("what");
-        let b = Math.ceil(Math.random() * 9); // 1-9
-        document.getElementById("gambar1").src = b+" .jpg";
-        kotak.innerHTML = b;
-        function ganti() {
-            let a = Math.floor(Math.random() * 3); // 0-2
-            let warna;
-            if(a == 0) {
-                warna = "red";
-            } else if(a == 1) {
-                warna = "green"
-            } else {
-                warna = "blue";
-            }
-            warna2 = "rgb("+r+","+g+","+b+")";
-            kotak.style.backgroundColor = warna;
-        }
-    </script>
+  <script>
+    function startGame() {
+      const playerInput = prompt("Selamat Bermain!!!!\nSilahkan Masukkan Angka Pilihan Anda:\n(Angka 1 - 9)");
+      const playerNumber = parseInt(playerInput);
+
+      if (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 9) {
+        alert("Angka harus dari 1 - 9");
+        return;
+      }
+
+      const computerNumber = Math.floor(Math.random() * 9) + 1;
+      const resultText = playerNumber > computerNumber ? "PLAYER WIN" :
+                         playerNumber < computerNumber ? "PLAYER LOSE" : "DRAW";
+
+      document.getElementById("playerNum").src = images/${playerNumber}.png;
+      document.getElementById("computerNum").src = images/${computerNumber}.png;
+      document.getElementById("status").innerText = resultText;
+    }
+
+    window.onload = startGame;
+  </script>
+
+  <div class="result">
+    <div class="player">
+      <div class="label red">PLAYER</div>
+      <img id="playerNum" src="">
+    </div>
+    <div class="vs">VS</div>
+    <div class="computer">
+      <div class="label blue">COMPUTER</div>
+      <img id="computerNum" src="">
+    </div>
+  </div>
+
+  <div class="status" id="status"></div>
 </body>
 </html>

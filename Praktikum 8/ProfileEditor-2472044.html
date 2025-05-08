@@ -1,34 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Editor</title>
+  <meta charset="UTF-8">
+  <title>Profile Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #profileImage {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <div id="kotak"></div>
-    <img src="" id="gambar1" width="100px" height="100px">
-    <button onclick="ganti()">Ganti</button>
-    <script>
-        let kotak = document.getElementById("kotak");
-        function ganti() {
-            let nama = document.getElementById("nama").value;
-            kotak.innerHTML = nama;
-            let b = Math.ceil(Math.random() * 9); // 1-9
-            document.getElementById("gambar1").src = b+".jpg";
-            let a = Math.floor(Math.random() * 3); // 0-2
-            let warna;
-            if(a == 0) {
-                warna = "red";
-            } else if(a == 1) {
-                warna = "green"
-            } else {
-                warna = "blue";
-            }
-            warna2 = "rgb("+r+","+g+","+b+")";
-            kotak.style.backgroundColor = warna;
-        }
-    </script>
+  <h1>Profile Card Editor</h1>
+
+  <div class="card" id="profileCard">
+    <img id="profileImage" alt="Profile Picture">
+    <h2 id="profileName">John Doe</h2>
+    <p id="profileBio">Web Developer</p>
+  </div>
+
+  <input type="text" id="nameInput" placeholder="Enter new name">
+  <input type="text" id="bioInput" placeholder="Enter new bio">
+  <input type="text" id="imageInput" placeholder="Enter image URL">
+
+  <button onclick="updateProfile()">Update Profile</button>
+  <button onclick="resetProfile()">Reset</button>
+
+  <script>
+    const defaultName = "John Doe";
+    const defaultBio = "Web Developer";
+    const defaultImage = "https://via.placeholder.com/100";
+
+    function updateProfile() {
+      const name = document.getElementById("nameInput").value;
+      const bio = document.getElementById("bioInput").value;
+      const imageUrl = document.getElementById("imageInput").value;
+
+      document.getElementById("profileName").textContent = name || defaultName;
+      document.getElementById("profileBio").textContent = bio || defaultBio;
+
+      const image = document.getElementById("profileImage");
+      if (imageUrl) {
+        image.src = imageUrl;
+        image.style.display = "block";
+      } else {
+        image.style.display = "none";
+      }
+    }
+
+    function resetProfile() {
+      document.getElementById("profileName").textContent = defaultName;
+      document.getElementById("profileBio").textContent = defaultBio;
+
+      const image = document.getElementById("profileImage");
+      image.src = defaultImage;
+      image.style.display = "block";
+
+      document.getElementById("nameInput").value = "";
+      document.getElementById("bioInput").value = "";
+      document.getElementById("imageInput").value = "";
+    }
+  </script>
 </body>
 </html>

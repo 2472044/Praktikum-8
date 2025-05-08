@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Generate Color</title>
+  <meta charset="UTF-8">
+  <title>Generator Color</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      transition: background-color 0.5s;
+    }
+    .container {
+      border: 1px solid black;
+      padding: 20px;
+      text-align: center;
+      background-color: white;
+    }
+    #colorValue {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div id="what"></div>
-    <button onclick="ganti()">Ganti</button>
-    <script>
-        let kotak = document.getElementById("what");
-        let b = Math.floor(Math.random() * 10);
-        document.getElementById("what").innerHTML = b;
-        kotak.innerHTML = b;
-        function ganti() {
-            let a = Math.floor(Math.random() * 3); // 0-2
-            let warna;
-            if(a == 0) {
-                warna = "red";
-            } else if(a == 1) {
-                warna = "green"
-            } else {
-                warna = "blue";
-            }
-            warna2 = "rgb("+r+","+g+","+b+")";
-            kotak.style.backgroundColor = warna;
-        }
-    </script>
+  <div class="container">
+    <h2>Color Generator</h2>
+    <button onclick="generateColor()">Generate</button>
+    <div id="colorValue"></div>
+  </div>
+
+  <script>
+    function generateColor() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      const rgbColor = `rgb(${r},${g},${b})`;
+
+      document.body.style.backgroundColor = rgbColor;
+      document.getElementById('colorValue').textContent = rgbColor;
+    }
+  </script>
 </body>
 </html>
