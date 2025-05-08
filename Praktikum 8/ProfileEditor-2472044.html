@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Editor</title>
+</head>
+<body>
+    <div id="kotak"></div>
+    <img src="" id="gambar1" width="100px" height="100px">
+    <button onclick="ganti()">Ganti</button>
+    <script>
+        let kotak = document.getElementById("kotak");
+        function ganti() {
+            let nama = document.getElementById("nama").value;
+            kotak.innerHTML = nama;
+            let b = Math.ceil(Math.random() * 9); // 1-9
+            document.getElementById("gambar1").src = b+".jpg";
+            let a = Math.floor(Math.random() * 3); // 0-2
+            let warna;
+            if(a == 0) {
+                warna = "red";
+            } else if(a == 1) {
+                warna = "green"
+            } else {
+                warna = "blue";
+            }
+            warna2 = "rgb("+r+","+g+","+b+")";
+            kotak.style.backgroundColor = warna;
+        }
+    </script>
+</body>
+</html>
